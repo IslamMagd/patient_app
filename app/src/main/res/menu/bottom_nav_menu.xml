@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/firstFragment"
+        android:title="Home"
+        android:icon="@drawable/ic_home"/>
+    <item android:id="@+id/secondFragment"
+        android:title="Brain X-ray"
+        android:icon="@drawable/brain"/>
+    <item android:id="@+id/thirdFragment"
+        android:title="chat with AI"
+        android:icon="@drawable/ic_chat"/>
+    <item android:id="@+id/fourthFragment"
+        android:title="settings"
+        android:icon="@drawable/ic_settings"/>
+
+
+
+
+
+
+</menu>

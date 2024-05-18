@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">patient</string>
+    <string name="experienced_doctors">Experienced Doctors</string>
+    <string name="next">Next</string>
+    <string name="appointment_Booking">Appointment Booking</string>
+    <string name="brain_tumer">Brain Tumer</string>
+    <string name="lorem1">
+        Discover Experienced Doctors and communicate with them
+    </string>
+    <string name="lorem2">
+       Effortless Appointment Booking.you can take appointment with experienced doctors
+    </string>
+    <string name="lorem3">
+        you take a picutre brain ray from your galary and application will tell you what is the type
+        of tumer
+    </string>
+    <string name="finsh">Finsh</string>
+    <string name="log_in">Login</string>
+    <string name="hint_email">Email</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_in_with_facebook">Sign In With Facebook</string>
+    <string name="sign_in_with_google">Sign In With Google</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="forget_password">Forget password ?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="create">create</string>
+    <string name="or">Or\n</string>
+    <string name="first_name">First Name\n</string>
+    <string name="last_name">Last Name</string>
+    <string name="age">age</string>
+    <string name="e_mail">Your Email</string>
+    <string name="hint_password">Password</string>
+    <string name="create_account">create new account</string>
+    <string name="make_appointment">Make Appointment</string>
+    <string name="doctor_speciality">Doctor Speciality</string>
+    <string name="see_all">See All</string>
+    <string name="all_doctors"> All Doctors</string>
+    <string name="select_image">Select Image</string>
+    <string name="complete_your_profile">Complete Your Profile</string>
+    <string name="complete_profile">Complete Profile</string>
+    <string name="sign_out">Sign out</string>
+    <string name="profile">Profile</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="language">Language</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_phone_number">Phone Number</string>
+    <string name="hint_gender">gender</string>
+
+
+</resources>

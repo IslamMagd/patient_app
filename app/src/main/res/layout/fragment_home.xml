@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_25sdp"
+        android:padding="@dimen/_8sdp"
+        app:cardCornerRadius="@dimen/_25sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <EditText
+            android:id="@+id/editText_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="@dimen/_12sdp" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView_doctorSpeciality"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_28sdp"
+        android:text="@string/doctor_speciality"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <TextView
+        android:id="@+id/textView_seeAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/see_all"
+        android:textColor="@color/dark_blue"
+        android:textSize="@dimen/_16ssp"
+        android:layout_marginTop="@dimen/_28sdp"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_speciality"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_28sdp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/textView_seeAll"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/textView_doctorSpeciality"
+        app:layout_constraintTop_toBottomOf="@+id/textView_doctorSpeciality" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_allDoctors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/all_doctors"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16ssp"
+        android:layout_marginTop="@dimen/_28sdp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView_speciality"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_speciality" />
+
+    <TextView
+        android:id="@+id/textView_seeAll2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/see_all"
+        android:textColor="@color/dark_blue"
+        android:textSize="@dimen/_16ssp"
+        android:layout_marginTop="@dimen/_28sdp"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerView_speciality"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_speciality" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_doctor"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_28sdp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView_seeAll2"
+        app:layout_constraintStart_toStartOf="@+id/textView_allDoctors"
+        app:layout_constraintTop_toBottomOf="@+id/textView_allDoctors"
+        tools:listitem="@layout/list_item_doctor" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "144859824044",
+    "project_id": "patient-5769c",
+    "storage_bucket": "patient-5769c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144859824044:android:dc5702328c2b8b98550409",
+        "android_client_info": {
+          "package_name": "com.islam.patient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144859824044-hf0vimv72fnc0f2g91ugue82eis7uuf3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiLTbPBXdZ4W9uenoaIGVOWRA2LNqUEik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144859824044-hf0vimv72fnc0f2g91ugue82eis7uuf3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
