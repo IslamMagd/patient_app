@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AppointmentViewModel @Inject constructor(
     private val getAllDoctorskUseCase: GetAllDoctorsUseCase,
-    val getAllSpecialtyUseCase: GetAllSpecialtyUseCase
+    private val getAllSpecialtyUseCase: GetAllSpecialtyUseCase
     ) : ViewModel(){
         private val _doctorsMutableStatFlow: MutableStateFlow<State<DoctorResponse?>?>
         = MutableStateFlow(null)

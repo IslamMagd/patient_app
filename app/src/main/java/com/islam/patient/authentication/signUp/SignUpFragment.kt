@@ -9,15 +9,22 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.islam.domain.model.Patient
+import com.islam.domain.model.State
 import com.islam.patient.R
 import com.islam.patient.databinding.FragmentSignUpBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SignUpFragment : Fragment() {
-    lateinit var binding: FragmentSignUpBinding
+    private lateinit var binding: FragmentSignUpBinding
     private val viewModel: SignUpViewModel by viewModels()
+    private var userId: String? = null
+    private lateinit var patient: Patient
+    @Inject lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +45,7 @@ class SignUpFragment : Fragment() {
 
         clickOnCreateButton()
         observingSignUpStateflow()
+        observingPatientState()
 
         }
 
@@ -47,8 +55,11 @@ class SignUpFragment : Fragment() {
         binding.buttonSignUp.setOnClickListener {
             val email = binding.textInputEditTextEmail.text.toString()
             val password = binding.textInputEditTextPassword.text.toString()
-            if (email.isNotEmpty() && password.isNotEmpty())
+            val name = binding.textInputEditTextName.text.toString()
+            if (email.isNotEmpty() && password.isNotEmpty() && name.isNotEmpty()) {
                 viewModel.signUp(email, password)
+                patient = Patient(userId,name,email)
+            }
         }
     }
 
@@ -56,13 +67,43 @@ class SignUpFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.signUpResult.collect{ result ->
                 if (result?.isAuthenticated == true) {
-                    showToast("You authenticate successfully!")
                     findNavController().navigate(R.id.action_signUpFragment_to_firstFragment)
+                    userId = firebaseAuth.currentUser?.uid
+                    viewModel.addPatient(patient)
                 } else {
                     result?.errorMessage?.let { showToast(it) }
                 }
             }
         }
+    }
+
+    private fun observingPatientState(){
+        lifecycleScope.launch {
+            viewModel.patientState.collect{
+                when(it){
+                    is State.Success ->{
+                        hideProgressBar()
+                        showToast("your sign up is successful")
+                    }
+                    is State.Loading ->
+                        showProgressBar()
+                    is State.Error ->{
+                        val errorMessage = it.message?: "unkown error"
+                            showToast("An error occurred: $errorMessage")
+                    }
+                    else ->
+                        showToast("any thing")
+                }
+            }
+        }
+    }
+
+    private fun hideProgressBar() {
+        binding.progressBar.visibility = View.INVISIBLE
+    }
+
+    private fun showProgressBar() {
+        binding.progressBar.visibility = View.VISIBLE
     }
 
     private fun showToast(message: String){

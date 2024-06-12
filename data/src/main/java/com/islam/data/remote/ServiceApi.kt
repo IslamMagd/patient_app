@@ -7,6 +7,8 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ServiceApi {
@@ -24,5 +26,15 @@ interface ServiceApi {
     ):Response<DoctorResponse>
 
     @POST("/patient")
-    suspend fun createPatient(@Body patient: Patient): Response<Patient>
+    suspend fun addPatient(@Body patient: Patient): Response<Patient>
+
+    @PUT("/patient/{id}")
+    suspend fun updatePatient(
+        @Body patient: Patient,
+        @Path("id") id: String
+    ): Response<Patient>
+
+
+
+    
 }

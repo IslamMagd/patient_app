@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.islam.domain.model.Patient
 import com.islam.patient.R
 import com.islam.patient.databinding.FragmentPatientProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -71,6 +72,9 @@ class PatientProfileFragment : Fragment() {
                 .setPhotoUri(imageUri)
                 .build()
             viewModel.updateProfile(profileUpdates)
+//            val name = binding.textInputEditTextName.text.toString()
+//            val phoneNumber = binding.textInputEditTextPhone.text.toString()
+//            val gender = binding.textInputEditTextGender.text.toString()
         }
     }
     

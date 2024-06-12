@@ -8,12 +8,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.islam.domain.model.Speciality
 import com.islam.patient.databinding.ListItemSpecializationBinding
 
-class SpecialityAdapter: ListAdapter<Speciality,SpecialityAdapter.ViewHolder>(SpecialityDiffCallback()){
+class SpecialityAdapter: ListAdapter<Speciality,SpecialityAdapter.ViewHolder>(
+    SpecialityDiffCallback()
+){
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): SpecialityAdapter.ViewHolder {
-        return ViewHolder(ListItemSpecializationBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return ViewHolder(ListItemSpecializationBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: SpecialityAdapter.ViewHolder, position: Int) {
