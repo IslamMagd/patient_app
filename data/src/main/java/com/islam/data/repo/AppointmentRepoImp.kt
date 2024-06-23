@@ -1,9 +1,11 @@
 package com.islam.data.repo
 
 import com.islam.data.remote.ServiceApi
+import com.islam.domain.model.Clinic
 import com.islam.domain.model.DoctorResponse
 import com.islam.domain.model.SpecialityResponse
 import com.islam.domain.model.State
+import com.islam.domain.model.TimeSlot
 import com.islam.domain.repo.AppointmentRepo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -41,6 +43,35 @@ class AppointmentRepoImp @Inject constructor(private val serviceApi: ServiceApi)
         return flow {
             emit(State.Loading)
             val result = serviceApi.searchDoctorByName(name)
+            if (result.isSuccessful){
+                emit(State.Success(result.body()))
+            }
+            else{
+                emit(State.Error(result.message()))
+            }
+        }
+    }
+
+    override suspend fun getClinicsforDoctor(userId: String): Flow<State<List<Clinic>?>?> {
+        return flow {
+            emit(State.Loading)
+            val result = serviceApi.getClinicsForDoctor(userId)
+            if (result.isSuccessful){
+                emit(State.Success(result.body()))
+            }
+            else{
+                emit(State.Error(result.message()))
+            }
+        }
+    }
+
+    override suspend fun getAvailableSlotsForDoctor(
+        doctorId: String,
+        date: String
+    ): Flow<State<List<TimeSlot>?>?> {
+        return flow {
+            emit(State.Loading)
+            val result = serviceApi.getAvailableSlotsForDoctor(doctorId,date)
             if (result.isSuccessful){
                 emit(State.Success(result.body()))
             }

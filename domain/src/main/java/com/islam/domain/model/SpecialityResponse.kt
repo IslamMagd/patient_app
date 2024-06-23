@@ -1,3 +1,5 @@
 package com.islam.domain.model
 
-class SpecialityResponse : ArrayList<Speciality>()
+import java.io.Serializable
+
+class SpecialityResponse : ArrayList<Speciality>(),Serializable

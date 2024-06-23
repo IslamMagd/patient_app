@@ -94,9 +94,9 @@ dependencies {
 
     implementation ("com.github.dhaval2404:imagepicker:2.1")
 
+    //OSMDroid to use map
+    implementation ("org.osmdroid:osmdroid-android:6.1.18")
 
-
-    
     implementation(project(":data"))
     implementation(project(":domain"))
 

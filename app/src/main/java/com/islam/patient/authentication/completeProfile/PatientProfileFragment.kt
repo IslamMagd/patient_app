@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -15,6 +16,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.islam.domain.model.Patient
+import com.islam.domain.model.State
 import com.islam.patient.R
 import com.islam.patient.databinding.FragmentPatientProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,6 +30,8 @@ class PatientProfileFragment : Fragment() {
 
     @Inject lateinit var auth: FirebaseAuth
     lateinit var binding: FragmentPatientProfileBinding
+    private lateinit var uid: String
+    private lateinit var patient: Patient
     private var imageUri: Uri? = null
     private val viewModel: CompleteProfileViewModel by viewModels()
 
@@ -37,15 +41,19 @@ class PatientProfileFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentPatientProfileBinding.inflate(inflater,container,false)
+        val gender = resources.getStringArray(R.array.gender)
+        val arrayAdapter = ArrayAdapter(requireContext(),R.layout.drop_down_item,gender)
+        binding.autoCompleteTextView.setAdapter(arrayAdapter)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        clickOnFloatingActionButton()
+//        clickOnFloatingActionButton()
         clickOnCompleteProfileButtton()
-        observingUpdateProfileStateFlow()
-        checkLoggedInState()
+//        observingUpdateProfileStateFlow()
+        observingUpdatePatientState()
+//        checkLoggedInState()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -67,14 +75,38 @@ class PatientProfileFragment : Fragment() {
 
     private fun clickOnCompleteProfileButtton(){
         binding.buttonCompleteProfile.setOnClickListener {
-            val profileUpdates = UserProfileChangeRequest.Builder()
-                .setDisplayName(binding.textInputEditTextName.toString())
-                .setPhotoUri(imageUri)
-                .build()
-            viewModel.updateProfile(profileUpdates)
-//            val name = binding.textInputEditTextName.text.toString()
-//            val phoneNumber = binding.textInputEditTextPhone.text.toString()
-//            val gender = binding.textInputEditTextGender.text.toString()
+//            val profileUpdates = UserProfileChangeRequest.Builder()
+//                .setDisplayName(binding.textInputEditTextName.toString())
+//                .setPhotoUri(imageUri)
+//                .build()
+//            viewModel.updateProfile(profileUpdates)
+            uid = auth.currentUser!!.uid
+            val phoneNumber = binding.textInputEditTextPhone.text.toString()
+            val gender = binding.autoCompleteTextView.text.toString()
+            val name = binding.textInputEditTextName.text.toString()
+            patient = Patient( uid = uid, name = name,phoneNumber = phoneNumber, gender = gender)
+            viewModel.updatePatient(patient)
+        }
+    }
+
+    private fun observingUpdatePatientState(){
+        lifecycleScope.launch {
+            viewModel.updatePatientState.collect{
+                when(it){
+                    is State.Success ->{
+                        hideProgressBar()
+                        showToast("you completed profile successfully")
+                    }
+                    is State.Loading ->
+                        showProgressBar()
+                    is State.Error ->{
+                        val errorMessage = it.message?: "unkown error"
+                        showToast("An error occurred: $errorMessage")
+                    }
+                    else ->
+                        showToast("any thing")
+                }
+            }
         }
     }
     
@@ -89,6 +121,14 @@ class PatientProfileFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun hideProgressBar() {
+        binding.progressBar.visibility = View.INVISIBLE
+    }
+
+    private fun showProgressBar() {
+        binding.progressBar.visibility = View.VISIBLE
     }
 
     private fun showToast(message: String){

@@ -22,8 +22,10 @@ import javax.inject.Inject
 class SignUpFragment : Fragment() {
     private lateinit var binding: FragmentSignUpBinding
     private val viewModel: SignUpViewModel by viewModels()
-    private var userId: String? = null
+    private var uid: String? = null
     private lateinit var patient: Patient
+    private lateinit var email: String
+    private lateinit var name: String
     @Inject lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,12 +55,11 @@ class SignUpFragment : Fragment() {
 
     private fun clickOnCreateButton() {
         binding.buttonSignUp.setOnClickListener {
-            val email = binding.textInputEditTextEmail.text.toString()
+             email = binding.textInputEditTextEmail.text.toString()
             val password = binding.textInputEditTextPassword.text.toString()
-            val name = binding.textInputEditTextName.text.toString()
+             name = binding.textInputEditTextName.text.toString()
             if (email.isNotEmpty() && password.isNotEmpty() && name.isNotEmpty()) {
                 viewModel.signUp(email, password)
-                patient = Patient(userId,name,email)
             }
         }
     }
@@ -68,8 +69,10 @@ class SignUpFragment : Fragment() {
             viewModel.signUpResult.collect{ result ->
                 if (result?.isAuthenticated == true) {
                     findNavController().navigate(R.id.action_signUpFragment_to_firstFragment)
-                    userId = firebaseAuth.currentUser?.uid
+                    uid = firebaseAuth.currentUser?.uid
+                    patient = Patient(uid,name,email)
                     viewModel.addPatient(patient)
+                    showToast("print ${patient}")
                 } else {
                     result?.errorMessage?.let { showToast(it) }
                 }

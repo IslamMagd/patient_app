@@ -1,4 +1,4 @@
-package com.islam.patient
+package com.islam.patient.appointment.doctor.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,26 +8,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.islam.domain.model.Speciality
 import com.islam.patient.databinding.ListItemSpecializationBinding
 
-class SpecialityAdapter: ListAdapter<Speciality,SpecialityAdapter.ViewHolder>(
+class SpecialityAdapter: ListAdapter<Speciality, SpecialityAdapter.ViewHolder>(
     SpecialityDiffCallback()
 ){
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): SpecialityAdapter.ViewHolder {
-        return ViewHolder(ListItemSpecializationBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
+    ): ViewHolder {
+        return ViewHolder(
+            ListItemSpecializationBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
             )
         )
     }
 
-    override fun onBindViewHolder(holder: SpecialityAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
-    class ViewHolder(private val itemBinding: ListItemSpecializationBinding): RecyclerView.ViewHolder(itemBinding.root) {
+    class ViewHolder(
+        private val itemBinding: ListItemSpecializationBinding
+    ): RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bind(speciality: Speciality){
             itemBinding.textViewSpeciality.text = speciality.name

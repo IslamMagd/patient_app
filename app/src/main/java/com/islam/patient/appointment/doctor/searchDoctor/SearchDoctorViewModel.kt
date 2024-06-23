@@ -1,4 +1,4 @@
-package com.islam.patient
+package com.islam.patient.appointment.doctor.searchDoctor
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -22,7 +22,6 @@ class SearchDoctorViewModel @Inject constructor(private val getSearchForDoctorUs
             getSearchForDoctorUseCase(name).collect{
                 _searchDoctorMutableStateFlow.value = it
             }
-
         }
 
     }

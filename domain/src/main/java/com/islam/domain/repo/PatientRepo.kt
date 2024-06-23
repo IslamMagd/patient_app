@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface PatientRepo {
     suspend fun addPatient(patient: Patient): Flow<State<Patient?>?>
-    suspend fun updatePatient(patient: Patient,id: String): Flow<State<Patient?>?>
+    suspend fun updatePatient(patient: Patient): Flow<State<Patient?>?>
 }

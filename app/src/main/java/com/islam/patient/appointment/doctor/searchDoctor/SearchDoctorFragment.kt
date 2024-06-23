@@ -1,4 +1,4 @@
-package com.islam.patient
+package com.islam.patient.appointment.doctor.searchDoctor
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,9 +9,8 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.islam.domain.model.State
-import com.islam.patient.R
+import com.islam.patient.appointment.doctor.adapters.DoctorAdapter
 import com.islam.patient.databinding.FragmentSearchDoctorBinding
 import com.islam.patient.util.SEARCH_Doctor_TIME_DELAY
 import dagger.hilt.android.AndroidEntryPoint

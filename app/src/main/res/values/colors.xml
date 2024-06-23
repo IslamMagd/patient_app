@@ -2,15 +2,15 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
     <color name="dark_blue">#407BFF</color>
     <color name="background_color">#FFFFFF</color>
-
     <color name="blue">#7BCEFF</color>
     <color name="darkPurple">#6159E6</color>
     <color name="quran_yellow">#D0CA9D</color>
     <color name="light_gray">#CCCCCC</color>
     <color name="dark_gray">#8C8C8C</color>
     <color name="light_blue">#add8e6</color>
+    <color name="red">#FF0000</color>
+
 
 </resources>

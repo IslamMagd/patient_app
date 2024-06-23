@@ -22,10 +22,10 @@ class PatientRepoImp @Inject constructor(private val serviceApi: ServiceApi): Pa
         }
     }
 
-    override suspend fun updatePatient(patient: Patient, id: String): Flow<State<Patient?>?> {
+    override suspend fun updatePatient(patient: Patient): Flow<State<Patient?>?> {
         return flow {
             emit(State.Loading)
-            val result = serviceApi.updatePatient(patient,id)
+            val result = serviceApi.updatePatient(patient)
             if(result.isSuccessful){
                 emit((State.Success(result.body())))
             }

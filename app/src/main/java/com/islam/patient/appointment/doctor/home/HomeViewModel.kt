@@ -1,4 +1,4 @@
-package com.islam.patient
+package com.islam.patient.appointment.doctor.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AppointmentViewModel @Inject constructor(
+class HomeViewModel @Inject constructor(
     private val getAllDoctorskUseCase: GetAllDoctorsUseCase,
     private val getAllSpecialtyUseCase: GetAllSpecialtyUseCase
     ) : ViewModel(){

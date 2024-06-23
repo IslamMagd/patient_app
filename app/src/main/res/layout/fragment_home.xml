@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".appointment.doctor.home.HomeFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_25sdp"
+        android:layout_marginStart="@dimen/_14sdp"
         android:layout_marginTop="@dimen/_8sdp"
-        android:layout_marginEnd="@dimen/_25sdp"
+        android:layout_marginEnd="@dimen/_14sdp"
         android:padding="@dimen/_8sdp"
         app:cardCornerRadius="@dimen/_25sdp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <TextView
-        android:id="@+id/textView_seeAll"
+        android:id="@+id/textView_seeAllSpeciality"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/see_all"
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_28sdp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/textView_seeAll"
+        app:layout_constraintEnd_toEndOf="@+id/textView_seeAllSpeciality"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/textView_doctorSpeciality"
         app:layout_constraintTop_toBottomOf="@+id/textView_doctorSpeciality" />
@@ -89,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/recyclerView_speciality" />
 
     <TextView
-        android:id="@+id/textView_seeAll2"
+        android:id="@+id/textView_seeAllDoctors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/see_all"
@@ -107,7 +107,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView_seeAll2"
+        app:layout_constraintEnd_toEndOf="@+id/textView_seeAllDoctors"
         app:layout_constraintStart_toStartOf="@+id/textView_allDoctors"
         app:layout_constraintTop_toBottomOf="@+id/textView_allDoctors"
         tools:listitem="@layout/list_item_doctor" />

@@ -34,9 +34,9 @@ class CompleteProfileViewModel @Inject constructor(
         }
     }
 
-    fun updatePatient(patient: Patient, id: String){
+    fun updatePatient(patient: Patient){
         viewModelScope.launch {
-            updatePatientUseCase(patient,id).collect{
+            updatePatientUseCase(patient).collect{
                 _updatePatientState.value = it
             }
         }

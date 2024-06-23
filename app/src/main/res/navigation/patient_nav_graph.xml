@@ -6,12 +6,21 @@
     app:startDestination="@id/splashScreenFragment">
     <fragment
         android:id="@+id/firstFragment"
-        android:name="com.islam.patient.HomeFragment"
+        android:name="com.islam.patient.appointment.doctor.home.HomeFragment"
         android:label="fragment_first"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_firstFragment_to_searchDoctorFragment"
             app:destination="@id/searchDoctorFragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_allDoctorsFragment"
+            app:destination="@id/allDoctorsFragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_allSpecialityFragment"
+            app:destination="@id/allSpecialityFragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_doctorProfileFragment"
+            app:destination="@id/doctorProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/secondFragment"
@@ -110,7 +119,46 @@
         tools:layout="@layout/fragment_patient_profile" />
     <fragment
         android:id="@+id/searchDoctorFragment"
-        android:name="com.islam.patient.SearchDoctorFragment"
+        android:name="com.islam.patient.appointment.doctor.searchDoctor.SearchDoctorFragment"
         android:label="fragment_search_doctor"
         tools:layout="@layout/fragment_search_doctor" />
+    <fragment
+        android:id="@+id/allDoctorsFragment"
+        android:name="com.islam.patient.appointment.doctor.home.AllDoctorsFragment"
+        android:label="fragment_all_doctors"
+        tools:layout="@layout/fragment_all_doctors" >
+        <argument
+            android:name="doctorResponse"
+            app:argType="com.islam.domain.model.DoctorResponse" />
+    </fragment>
+    <fragment
+        android:id="@+id/allSpecialityFragment"
+        android:name="com.islam.patient.appointment.doctor.home.AllSpecialityFragment"
+        android:label="fragment_all_speciality"
+        tools:layout="@layout/fragment_all_speciality" >
+        <argument
+            android:name="specialityResponse"
+            app:argType="com.islam.domain.model.SpecialityResponse" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorProfileFragment"
+        android:name="com.islam.patient.appointment.doctor.doctorProfile.DoctorProfileFragment"
+        android:label="fragment_doctor_profile"
+        tools:layout="@layout/fragment_doctor_profile" >
+        <argument
+            android:name="doctor"
+            app:argType="com.islam.domain.model.Doctor" />
+        <action
+            android:id="@+id/action_doctorProfileFragment_to_clinicFragment"
+            app:destination="@id/clinicFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/clinicFragment"
+        android:name="com.islam.patient.appointment.clinic.ClinicFragment"
+        android:label="fragment_clinic"
+        tools:layout="@layout/fragment_clinic" >
+        <argument
+            android:name="clinic"
+            app:argType="com.islam.domain.model.Clinic" />
+    </fragment>
 </navigation>

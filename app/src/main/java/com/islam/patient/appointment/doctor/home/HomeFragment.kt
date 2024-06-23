@@ -1,6 +1,5 @@
-package com.islam.patient
+package com.islam.patient.appointment.doctor.home
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,19 +8,31 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.islam.domain.model.Doctor
+import com.islam.domain.model.DoctorResponse
+import com.islam.domain.model.SpecialityResponse
 import com.islam.domain.model.State
+import com.islam.patient.R
+import com.islam.patient.appointment.doctor.adapters.SpacingVerticalItemDecoration
+import com.islam.patient.appointment.doctor.adapters.SpacingHorizontaltemDecoration
+import com.islam.patient.appointment.doctor.adapters.DoctorAdapter
+import com.islam.patient.appointment.doctor.adapters.OnItemClickListener
+import com.islam.patient.appointment.doctor.adapters.SpecialityAdapter
 import com.islam.patient.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(),OnItemClickListener {
     lateinit var binding: FragmentHomeBinding
     lateinit var doctorAdapter: DoctorAdapter
     lateinit var specialityAdapter: SpecialityAdapter
-    private val viewModel: AppointmentViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
+    private var doctorResponse: DoctorResponse? = null
+    private var response: SpecialityResponse? = null
 
 
 
@@ -47,6 +58,9 @@ class HomeFragment : Fragment() {
         viewModel.getAllDoctors()
         observingDoctorsStateFlow()
 
+        clickOnSeeAllForDoctors()
+        clickOnSeeAllForSpeciality()
+
         setUpSpecialitiesRecyclerView()
         viewModel.getAllSpecialities()
         observingSpecialtiesStateFlow()
@@ -68,15 +82,15 @@ class HomeFragment : Fragment() {
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
-            addItemDecoration(SpacingSpecialityItemDecoration(20))
+            addItemDecoration(SpacingHorizontaltemDecoration(20))
         }
     }
 
     private fun setUpDoctorsRecyclerView() {
-        doctorAdapter = DoctorAdapter()
+        doctorAdapter = DoctorAdapter(this)
         binding.recyclerViewDoctor.apply {
             adapter = doctorAdapter
-            addItemDecoration(SpacingDoctorItemDecoration(20))
+            addItemDecoration(SpacingVerticalItemDecoration(20))
         }
     }
 
@@ -86,8 +100,9 @@ class HomeFragment : Fragment() {
                 when(it){
                     is State.Success ->{
                         hideProgressBar()
-                        it.data.let{doctorResponse ->
-                            doctorAdapter.submitList(doctorResponse)
+                        it.data.let{response ->
+                            doctorResponse = response
+                            doctorAdapter.submitList(response)
                         }
                     }
                     is State.Loading ->{
@@ -119,6 +134,7 @@ class HomeFragment : Fragment() {
                     is State.Success ->{
                         hideProgressBar()
                         it.data.let {specialityResponse ->
+                            response = specialityResponse
                             specialityAdapter.submitList(specialityResponse)
                         }
                     }
@@ -142,7 +158,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-
     private fun hideProgressBar() {
         binding.progressBar.visibility = View.INVISIBLE
     }
@@ -150,4 +165,42 @@ class HomeFragment : Fragment() {
     private fun showProgressBar() {
         binding.progressBar.visibility = View.VISIBLE
     }
+
+
+    private fun clickOnSeeAllForDoctors(){
+        binding.textViewSeeAllDoctors.setOnClickListener {
+            val action: NavDirections? = doctorResponse?.let {
+                HomeFragmentDirections.actionFirstFragmentToAllDoctorsFragment(
+                    it
+                )
+            }
+            if (action != null) {
+                findNavController().navigate(action)
+            }
+        }
+    }
+
+    private fun clickOnSeeAllForSpeciality(){
+        binding.textViewSeeAllSpeciality.setOnClickListener {
+            val action: NavDirections? = response?.let {
+                HomeFragmentDirections.actionFirstFragmentToAllSpecialityFragment(
+                    it
+                )
+            }
+            if (action != null) {
+                findNavController().navigate(action)
+            }
+        }
+
+    }
+
+    override fun onItemClick(doctor: Doctor) {
+      val action: NavDirections? = doctor?.let {
+          HomeFragmentDirections.actionFirstFragmentToDoctorProfileFragment(it)
+      }
+        if (action != null) {
+            findNavController().navigate(action)
+        }
+    }
+
 }

@@ -1,3 +1,7 @@
 package com.islam.domain.model
 
-class DoctorResponse : ArrayList<Doctor>()
+import android.os.Parcelable
+import java.io.Serializable
+
+
+class DoctorResponse : ArrayList<Doctor>(),Serializable
