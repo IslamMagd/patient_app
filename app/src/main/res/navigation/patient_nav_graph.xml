@@ -160,5 +160,23 @@
         <argument
             android:name="clinic"
             app:argType="com.islam.domain.model.Clinic" />
+        <argument
+            android:name="doctor"
+            app:argType="com.islam.domain.model.Doctor" />
+        <action
+            android:id="@+id/action_clinicFragment_to_timeSlotFragment"
+            app:destination="@id/timeSlotFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/timeSlotFragment"
+        android:name="com.islam.patient.appointment.timeSlot.TimeSlotFragment"
+        android:label="fragment_time_slot"
+        tools:layout="@layout/fragment_time_slot" >
+        <argument
+            android:name="doctorAvailablity"
+            app:argType="com.islam.domain.model.DoctorAvailability" />
+        <argument
+            android:name="doctor"
+            app:argType="com.islam.domain.model.Doctor" />
     </fragment>
 </navigation>

@@ -34,7 +34,10 @@ class ClinicAdapter(
         fun bind(clinic: Clinic) {
             itemBinding.apply {
                 textViewAddressValue.text = clinic.address
-                textViewExaminationPrice.text = clinic.price.toString()
+                textViewExaminationPriceValue.text = clinic.examination.toString()
+                textViewFollowUpPriceValue.text = clinic.followUp.toString()
+                textViewPhoneValue.text = clinic.phone
+                textViewClinicName.text = clinic.name
                 root.setOnClickListener{
                     onClinciClickListener?.clickOnClinic(clinic)
                 }

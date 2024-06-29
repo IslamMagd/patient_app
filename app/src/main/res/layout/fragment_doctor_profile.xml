@@ -21,56 +21,66 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/shapeableImageView"
-        android:layout_width="@dimen/_130sdp"
-        android:layout_height="@dimen/_130sdp"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
         android:background="@color/light_gray"
         android:padding="@dimen/_4sdp"
         android:src="@drawable/ic_profile"
         android:scaleType="centerCrop"
-        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_6sdp"
         app:shapeAppearanceOverlay="@style/circular"
         app:layout_constraintTop_toBottomOf="@+id/textView_doctorDetails"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="81dp" />
 
-
-    <TextView
-        android:id="@+id/textView_Dr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:text="@string/Dr"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_20ssp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shapeableImageView" />
-
     <TextView
         android:id="@+id/textView_doctorName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_6sdp"
         android:text="Islam Magdy"
         android:textColor="@color/black"
         android:textSize="@dimen/_20ssp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/textView_Dr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shapeableImageView" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:paddingStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:max="5"
+        app:layout_constraintTop_toBottomOf="@id/textView_doctorName"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_submitRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="submit rating"
+        android:layout_marginTop="@dimen/_6sdp"
+        app:layout_constraintTop_toBottomOf="@id/ratingBar"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView_doctorProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:layout_marginStart="@dimen/_10sdp"
+        android:maxLines="3"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:paddingStart="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
+
         android:text="Pediatrician with 15+ years of experience, specializing in endocrinology and diabetes management. Lead Pediatrician at Sunnyvale Children's Clinic."
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_doctorName" />
+        app:layout_constraintTop_toBottomOf="@+id/button_submitRating" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_doctor"
@@ -84,4 +94,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_doctorProfile"
         tools:listitem="@layout/list_item_clinic" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

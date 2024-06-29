@@ -8,7 +8,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.islam.domain.model.Doctor
+import com.islam.patient.appointment.doctor.home.HomeViewModel
 import com.islam.patient.databinding.ListItemDoctorBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class DoctorAdapter(
     val onItemClickListener: OnItemClickListener? = null
@@ -36,6 +42,12 @@ class DoctorAdapter(
     ): RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bind(doctor: Doctor){
+//            doctor.uid?.let { viewModel.getAverageRating(it) }
+//            coroutineScope {
+//                viewModel.ratingState.collect{
+//                    itemBinding.
+//                }
+//            }
             itemBinding.apply {
                 textViewDoctorName.text = doctor.name
                 textViewDoctorSpeciality.text = doctor.specialty

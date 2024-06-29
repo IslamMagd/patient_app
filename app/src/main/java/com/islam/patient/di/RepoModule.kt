@@ -18,8 +18,8 @@ import dagger.hilt.components.SingletonComponent
 object RepoModule {
 
     @Provides
-    fun provideAuthenticationRepo(auth: FirebaseAuth): AuthenticationRepo{
-    return AuthenticationRepoImp(auth)
+    fun provideAuthenticationRepo(auth: FirebaseAuth,serviceApi: ServiceApi): AuthenticationRepo{
+    return AuthenticationRepoImp(auth,serviceApi)
     }
 
     @Provides

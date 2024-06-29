@@ -55,7 +55,7 @@ class HomeFragment : Fragment(),OnItemClickListener {
 
         clickOnSearchEditText()
         setUpDoctorsRecyclerView()
-        viewModel.getAllDoctors()
+        viewModel.getAllDoctors("eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MzMsInN1YiI6IjVlYzZjYzJjYWRkMEBkcm1haWwuaW4iLCJpYXQiOjE3MTk2OTE2MDEsImV4cCI6MTcyMDAzNzIwMX0.I1PUZT1i59jCQM2ekbNCFVXlf7LzOsC4OAdWWLCAu0I")
         observingDoctorsStateFlow()
 
         clickOnSeeAllForDoctors()
@@ -82,7 +82,7 @@ class HomeFragment : Fragment(),OnItemClickListener {
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
-            addItemDecoration(SpacingHorizontaltemDecoration(20))
+            addItemDecoration(SpacingHorizontaltemDecoration(25))
         }
     }
 
@@ -152,7 +152,6 @@ class HomeFragment : Fragment(),OnItemClickListener {
                     else -> {
                         Toast.makeText(requireContext(),"any thing",Toast.LENGTH_LONG).show()
                     }
-
                 }
             }
         }

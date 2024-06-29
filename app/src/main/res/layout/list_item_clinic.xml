@@ -13,57 +13,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:id="@+id/textView_clinicInformation"
+            android:id="@+id/textView_clinicName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             android:text="@string/clinic_information"
             android:textSize="@dimen/_20ssp"
+            android:paddingBottom="@dimen/_8sdp"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-        <TextView
-            android:id="@+id/textView_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/address"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:textSize="@dimen/_12ssp"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView_clinicInformation" />
 
         <TextView
             android:id="@+id/textView_addressValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:layout_marginStart="@dimen/_6sdp"
             android:text="Qasr El nil,Cairo Governorate,Egypt"
             android:textSize="@dimen/_12ssp"
             android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/textView_address"
-            app:layout_constraintTop_toTopOf="@id/textView_address" />
-
-        <TextView
-            android:id="@+id/textView_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/phone"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:textSize="@dimen/_12ssp"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@id/textView_address"
-            app:layout_constraintTop_toBottomOf="@id/textView_address" />
+            android:inputType="textMultiLine"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_clinicName" />
 
         <TextView
             android:id="@+id/textView_phoneValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="01240502397"
             android:textSize="@dimen/_12ssp"
+            android:paddingBottom="@dimen/_8sdp"
             android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/textView_phone"
-            app:layout_constraintTop_toTopOf="@id/textView_phone" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_followUpPrice" />
 
         <TextView
             android:id="@+id/textView_examinationPrice"
@@ -73,8 +56,8 @@
             android:layout_marginTop="@dimen/_8sdp"
             android:textSize="@dimen/_12ssp"
             android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@id/textView_phone"
-            app:layout_constraintTop_toBottomOf="@id/textView_phone" />
+            app:layout_constraintStart_toStartOf="@id/textView_addressValue"
+            app:layout_constraintTop_toBottomOf="@id/textView_addressValue" />
 
         <TextView
             android:id="@+id/textView_examinationPriceValue"
@@ -101,7 +84,6 @@
             android:layout_height="wrap_content"
             android:text="@string/follow_up_price"
             android:layout_marginTop="@dimen/_8sdp"
-            android:paddingBottom="@dimen/_8sdp"
             android:textSize="@dimen/_12ssp"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="@id/textView_examinationPrice"
@@ -112,7 +94,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="75"
-            android:paddingBottom="@dimen/_8sdp"
             android:textSize="@dimen/_12ssp"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/textView_followUpPrice"
@@ -124,7 +105,6 @@
             android:text="@string/LE"
             android:textSize="@dimen/_12ssp"
             android:textColor="@color/black"
-            android:paddingBottom="@dimen/_8sdp"
             app:layout_constraintStart_toEndOf="@+id/textView_followUpPriceValue"
             app:layout_constraintTop_toTopOf="@id/textView_followUpPrice"/>
 

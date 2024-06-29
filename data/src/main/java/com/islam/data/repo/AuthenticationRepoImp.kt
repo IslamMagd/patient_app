@@ -1,5 +1,6 @@
 package com.islam.data.repo
 
+import android.util.Log
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -7,33 +8,42 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.islam.data.remote.ServiceApi
 import com.islam.domain.model.AuthenticationResult
+import com.islam.domain.model.LoginRequest
+import com.islam.domain.model.LoginResponse
+import com.islam.domain.model.Patient
 import com.islam.domain.repo.AuthenticationRepo
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-class AuthenticationRepoImp(private val auth: FirebaseAuth): AuthenticationRepo {
-    override suspend fun signUpWithEmailAndPassword(
-        email: String,
-        password: String
+class AuthenticationRepoImp(
+    private val auth: FirebaseAuth,
+    private val serviceApi: ServiceApi
+): AuthenticationRepo {
+    override suspend fun registerPatient(
+        patient: Patient
     ): AuthenticationResult {
         return try {
-            val result = auth.createUserWithEmailAndPassword(email, password).await()
-            AuthenticationResult(result.user != null)
+            serviceApi.registerPatient(patient)
+            AuthenticationResult(true)
         } catch (e: Exception) {
             AuthenticationResult(false, e.message.toString())
         }
     }
 
     override suspend fun loginWithEmailAndPassword(
-        email: String,
-        password: String
-    ): AuthenticationResult {
+        loginRequest: LoginRequest
+    ): LoginResponse {
         return try {
-            val result = auth.signInWithEmailAndPassword(email,password).await()
-            AuthenticationResult(result.user != null)
+             val result = serviceApi.loginWithEmailAndPassword(loginRequest)
+            val token = result.body()?.token
+           LoginResponse(
+               true,
+               token
+           )
         } catch (e: Exception) {
-            AuthenticationResult(false, e.message.toString())
+            LoginResponse(false, e.message.toString())
         }
     }
 

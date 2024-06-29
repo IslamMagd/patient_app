@@ -1,6 +1,9 @@
 package com.islam.data.repo
 
+import android.media.Rating
+import android.util.Log
 import com.islam.data.remote.ServiceApi
+import com.islam.domain.model.BookingInput
 import com.islam.domain.model.Clinic
 import com.islam.domain.model.DoctorResponse
 import com.islam.domain.model.SpecialityResponse
@@ -12,10 +15,10 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class AppointmentRepoImp @Inject constructor(private val serviceApi: ServiceApi): AppointmentRepo {
-    override suspend fun getAllDoctors(): Flow<State<DoctorResponse?>> {
+    override suspend fun getAllDoctors(token: String): Flow<State<DoctorResponse?>> {
         return flow {
             emit(State.Loading)
-            val result = serviceApi.getAllDoctors()
+            val result = serviceApi.getAllDoctors("Bearer $token")
             if(result.isSuccessful){
                 emit(State.Success(result.body()))
             }
@@ -72,6 +75,36 @@ class AppointmentRepoImp @Inject constructor(private val serviceApi: ServiceApi)
         return flow {
             emit(State.Loading)
             val result = serviceApi.getAvailableSlotsForDoctor(doctorId,date)
+            if (result.isSuccessful){
+                emit(State.Success(result.body()))
+            }
+            else{
+                emit(State.Error(result.message()))
+            }
+        }
+    }
+
+    override suspend fun rateDoctor(doctorId: String, rate: Int): Flow<State<Rating?>?> {
+        return flow {
+            emit(State.Loading)
+            val result = serviceApi.rateDoctor(doctorId,rate)
+            if (result.isSuccessful){
+                emit(State.Success(result.body()))
+            }
+            else{
+                emit(State.Error(result.message()))
+            }
+        }
+    }
+
+    override suspend fun getAverageRating(
+        doctorId: String
+    ): Double = serviceApi.getAverageRating(doctorId)
+
+    override suspend fun addBooking(bookingInput: BookingInput): Flow<State<BookingInput?>?> {
+        return flow {
+            emit(State.Loading)
+            val result = serviceApi.addBooking(bookingInput)
             if (result.isSuccessful){
                 emit(State.Success(result.body()))
             }

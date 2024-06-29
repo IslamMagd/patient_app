@@ -58,7 +58,7 @@
     <string name="category">Category</string>
     <string name="address">"Address: "</string>
     <string name="phone">"phone number: "</string>
-    <string name="examination_price">"examinationPrice: "</string>
+    <string name="examination_price">"examination Price: "</string>
     <string name="follow_up_price">"follow up Price: "</string>
     <string name="LE">" LE"</string>
     <string name="clinic_information">Clinic Information</string>

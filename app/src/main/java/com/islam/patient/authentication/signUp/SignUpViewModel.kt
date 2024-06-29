@@ -18,15 +18,15 @@ class SignUpViewModel @Inject constructor(
     private val addPatientUseCase: AddPatientUseCase
 ): ViewModel() {
 
-    private val _signUpResult: MutableStateFlow<AuthenticationResult?> = MutableStateFlow(null)
-    val signUpResult: StateFlow<AuthenticationResult?> = _signUpResult
+    private val _registerPatient: MutableStateFlow<AuthenticationResult?> = MutableStateFlow(null)
+    val registerPatient: StateFlow<AuthenticationResult?> = _registerPatient
 
     private val _patientState: MutableStateFlow<State<Patient?>?> = MutableStateFlow(null)
     val patientState: StateFlow<State<Patient?>?> = _patientState
 
-    fun signUp(email: String,password: String){
+    fun registerPatient(patient: Patient){
         viewModelScope.launch {
-            _signUpResult.value = authenticationUsecase.signUpWithEmailAndPassword(email,password)
+            _registerPatient.value = authenticationUsecase.registerPatient(patient)
         }
     }
 

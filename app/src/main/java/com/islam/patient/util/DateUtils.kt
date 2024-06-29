@@ -14,21 +14,13 @@ fun adjustDaysToStartFromToday(availabilityList: List<DoctorAvailability>): List
     for (i in 0..6) {
         val dayOfWeek = dayFormat.format(today.time)
         val date = dateFormat.format(today.time)
-        val availability = availabilityList.find { it.available ==true }
-
-        if (availability != null) {
-            adjustedList.add(
-                availability.copy(
-                    id = availability.id,
-                    day = "$dayOfWeek $date",
-                    startTime = availability.startTime,
-                    endTime = availability.endTime
-                )
-            )
-        }
+        adjustedList.add(availabilityList[i].copy(
+            day = "$dayOfWeek $date"
+        ))
         today.add(Calendar.DAY_OF_YEAR, 1)
     }
     Log.d("seeAvailablites","print$adjustedList")
+
 
     return adjustedList
 }

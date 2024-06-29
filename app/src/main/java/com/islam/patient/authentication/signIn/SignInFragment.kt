@@ -15,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.islam.domain.model.LoginRequest
 import com.islam.patient.R
 import com.islam.patient.databinding.FragmentSignInBinding
 import com.islam.patient.util.REQUEST_CODE_SIGN_IN
@@ -77,7 +78,7 @@ class SignInFragment : Fragment() {
             val email = binding.textInputEditTextEmail.text.toString()
             val password = binding.textInputEditTextPassword.text.toString()
             if (email.isNotEmpty() && password.isNotEmpty())
-                viewModel.signInWithEmailAndPassword(email, password)
+                viewModel.signInWithEmailAndPassword(LoginRequest(email,password))
             userLoggedIn()
         }
     }
@@ -85,11 +86,11 @@ class SignInFragment : Fragment() {
     private fun observingSignInStateflow(){
         lifecycleScope.launch {
             viewModel.signInResult.collect { result ->
-                if (result?.isAuthenticated == true) {
+                if (result?.success == true) {
                    showToast("You logged in successfully!")
                     findNavController().navigate(R.id.action_signInFragment_to_firstFragment)
                 } else {
-                    result?.errorMessage?.let { showToast(it) }
+                    result?.message?.let { showToast(it) }
                 }
             }
         }

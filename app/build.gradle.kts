@@ -62,6 +62,7 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
+    implementation ("com.squareup.okhttp3:okhttp:4.9.0")
 
     //intuit
     implementation ("com.intuit.sdp:sdp-android:1.1.0")
@@ -95,7 +96,7 @@ dependencies {
     implementation ("com.github.dhaval2404:imagepicker:2.1")
 
     //OSMDroid to use map
-    implementation ("org.osmdroid:osmdroid-android:6.1.18")
+    implementation ("org.osmdroid:osmdroid-android:6.1.10")
 
     implementation(project(":data"))
     implementation(project(":domain"))

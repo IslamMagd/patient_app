@@ -14,7 +14,7 @@
         <org.osmdroid.views.MapView
             android:id="@+id/map"
             android:layout_width="0dp"
-            android:layout_height="@dimen/_250sdp"
+            android:layout_height="@dimen/_300sdp"
             android:clickable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

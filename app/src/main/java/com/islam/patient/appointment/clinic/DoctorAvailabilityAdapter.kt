@@ -7,12 +7,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.islam.domain.model.DoctorAvailability
+import com.islam.patient.appointment.doctor.adapters.OnItemClickListener
 import com.islam.patient.databinding.ListItemBookingOptionBinding
 
-class DoctorAvailabilityAdapter: ListAdapter<DoctorAvailability, DoctorAvailabilityAdapter.ViewHolder>(
+class DoctorAvailabilityAdapter(val onBookClickListener: OnBookClickListener? = null): ListAdapter<DoctorAvailability, DoctorAvailabilityAdapter.ViewHolder>(
     BookingOptionDiffCallback()
 ){
-    class ViewHolder(
+    inner class ViewHolder(
         private val itemBinding: ListItemBookingOptionBinding
     ): RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(doctorAvailability: DoctorAvailability){
@@ -27,6 +28,9 @@ class DoctorAvailabilityAdapter: ListAdapter<DoctorAvailability, DoctorAvailabil
                 itemBinding.textViewTimeTo.visibility = View.GONE
                 itemBinding.textViewTo.text = "No Available Slots"
                 itemBinding.textViewBook.isEnabled = false
+            }
+            itemBinding.textViewBook.setOnClickListener {
+                onBookClickListener?.onBookClick(doctorAvailability)
             }
         }
 

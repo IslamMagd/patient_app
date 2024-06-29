@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.islam.patient.appointment.doctor.adapters.SpacingVerticalItemDecoration
 import com.islam.patient.appointment.doctor.adapters.SpecialityAdapter
@@ -35,11 +36,7 @@ class AllSpecialityFragment : Fragment() {
         specialityAdapter = SpecialityAdapter()
         binding.recyclerViewSpeciality.apply {
             adapter = specialityAdapter
-            layoutManager = LinearLayoutManager(
-                requireContext(),
-                LinearLayoutManager.VERTICAL,
-                false
-            )
+            layoutManager = GridLayoutManager(requireContext(),3)
             addItemDecoration(SpacingVerticalItemDecoration(20))
         }
     }

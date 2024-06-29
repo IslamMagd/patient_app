@@ -6,7 +6,10 @@ data class Clinic(
     val address: String? = null,
     val doctorAvailabilities: List<DoctorAvailability?>? = null,
     val id: Int? = null,
-    val length: Double? = null,
+    val latitude: Double,
+    val longitude: Double,
     val name: String? = null,
-    val price: Double? = null
+    val examination: Double,
+    val followUp: Double,
+    val phone: String? = null
 ): Serializable
