@@ -26,3 +26,24 @@ https://github.com/user-attachments/assets/dc4c7816-540f-41a6-9e0c-e519c639292c
 
 part2
 https://github.com/user-attachments/assets/f370f2c7-0dad-44a5-9a12-b36858307f34
+
+##libraries and tools
+
+## Libraries and Tools
+
+- [Retrofit](https://square.github.io/retrofit/): A type-safe HTTP client for Android and Java.
+
+- [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html): Simplifies asynchronous programming by using sequential code.
+
+- [Model-View-ViewModel (MVVM)](https://developer.android.com/jetpack/guide#recommended-app-arch): A software architectural pattern to separate the concerns of UI and business logic.
+
+- [Flows](https://kotlinlang.org/docs/flow.html): A type of asynchronous data stream that sequentially emits values and completes normally or with an exception.
+
+- [Dependency Injection with Hilt](https://developer.android.com/training/dependency-injection/hilt-android): A dependency injection library for Android that reduces the boilerplate code.
+
+- [Navigation Component](https://developer.android.com/guide/navigation): A framework for managing in-app navigation.
+
+- [Clean Architecture](https://developer.android.com/jetpack/guide): A software design pattern that separates concerns to make the app more scalable and maintainable.
+
+- [Intuit](https://github.com/intuit/sdp): A library that provides scalable size units for Android screens.
+
