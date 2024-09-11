@@ -14,3 +14,5 @@ HealthHub for Patient is an Android application developed using Kotlin and XML. 
 **-User-Friendly Interface**: Intuitive and modern interface designed for ease of use, ensuring a smooth experience for all users.
 
 **Demo Video**<br/>
+https://github.com/user-attachments/assets/dc4c7816-540f-41a6-9e0c-e519c639292c
+https://github.com/user-attachments/assets/f370f2c7-0dad-44a5-9a12-b36858307f34
